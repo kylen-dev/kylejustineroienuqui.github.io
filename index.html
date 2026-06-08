@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kyle Justine Roie C. Nuqui — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F7F4EF;
+    --ink: #1A1612;
+    --ink2: #4A453E;
+    --ink3: #8A847A;
+    --accent: #2D5A3D;
+    --accent2: #5A8A6A;
+    --accent-light: #E8F0EB;
+    --warm: #C4713A;
+    --warm-light: #F5EAE0;
+    --border: rgba(26,22,18,0.1);
+    --border2: rgba(26,22,18,0.06);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 3rem;
+    background: rgba(247,244,239,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem; font-weight: 400; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--ink2); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 5rem;
+  }
+
+  .hero-left {
+    padding: 6rem 4rem 4rem 3rem;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative;
+  }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--accent);
+    background: var(--accent-light);
+    border: 1px solid rgba(45,90,61,0.2);
+    padding: 0.35rem 0.85rem;
+    border-radius: 2rem;
+    margin-bottom: 2rem;
+    width: fit-content;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-degree {
+    font-size: 1rem; font-weight: 300; color: var(--ink2);
+    letter-spacing: 0.03em;
+    margin-bottom: 1.75rem;
+    animation: fadeUp 0.6s 0.15s ease both;
+  }
+
+  .hero-bio {
+    font-size: 1rem; color: var(--ink2); line-height: 1.75;
+    max-width: 38ch;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-ctas {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.25s ease both;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.85rem 1.75rem;
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 500;
+    border: none; border-radius: 0.25rem;
+    text-decoration: none; cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.85rem 1.75rem;
+    background: transparent;
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 400;
+    border: 1px solid var(--border);
+    border-radius: 0.25rem;
+    text-decoration: none; cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+  .hero-right {
+    background: var(--ink);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 4rem 3rem;
+    position: relative; overflow: hidden;
+    animation: fadeIn 0.8s 0.3s ease both;
+  }
+
+  .hero-right-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 20%, rgba(45,90,61,0.3) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 80%, rgba(196,113,58,0.15) 0%, transparent 50%);
+  }
+
+  .hero-stats {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .stat {
+    border-top: 1px solid rgba(247,244,239,0.15);
+    padding-top: 1rem;
+  }
+
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem; color: var(--cream);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem; font-weight: 300; letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(247,244,239,0.5);
+  }
+
+  .hero-contact {
+    position: relative; z-index: 1;
+    border-top: 1px solid rgba(247,244,239,0.1);
+    padding-top: 1.5rem;
+    display: flex; flex-direction: column; gap: 0.5rem;
+  }
+
+  .contact-item {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 0.85rem; color: rgba(247,244,239,0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-item:hover { color: rgba(247,244,239,0.9); }
+
+  .contact-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent2); flex-shrink: 0;
+  }
+
+  /* SECTION SHARED */
+  section { padding: 6rem 3rem; }
+
+  .section-label {
+    display: flex; align-items: center; gap: 1rem;
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--ink3);
+    margin-bottom: 3rem;
+  }
+  .section-label::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+
+  /* ABOUT */
+  #about { border-top: 1px solid var(--border2); }
+
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1.5fr;
+    gap: 4rem; align-items: start;
+  }
+
+  .about-heading {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .about-heading em { font-style: italic; color: var(--accent); }
+
+  .about-text {
+    font-size: 1rem; color: var(--ink2); line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .skills-wrap {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem;
+  }
+
+  .skill-tag {
+    font-size: 0.8rem; font-weight: 400;
+    padding: 0.35rem 0.9rem;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 0.2rem;
+    color: var(--ink2);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* EXPERIENCE */
+  #experience { background: var(--ink); }
+  #experience .section-label { color: rgba(247,244,239,0.35); }
+  #experience .section-label::after { background: rgba(247,244,239,0.1); }
+
+  .exp-heading {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    color: var(--cream);
+    margin-bottom: 3rem;
+  }
+
+  .exp-list { display: flex; flex-direction: column; gap: 0; }
+
+  .exp-item {
+    display: grid; grid-template-columns: 1.5fr 2.5fr;
+    gap: 3rem; align-items: start;
+    padding: 2.5rem 0;
+    border-top: 1px solid rgba(247,244,239,0.08);
+  }
+
+  .exp-meta {}
+
+  .exp-period {
+    font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--accent2); margin-bottom: 0.75rem; font-weight: 500;
+  }
+
+  .exp-company {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem; color: var(--cream);
+    margin-bottom: 0.35rem; line-height: 1.2;
+  }
+
+  .exp-role {
+    font-size: 0.85rem; font-weight: 300;
+    color: rgba(247,244,239,0.45);
+    letter-spacing: 0.03em;
+  }
+
+  .exp-details { padding-top: 0.25rem; }
+
+  .exp-badge {
+    display: inline-block;
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    background: rgba(45,90,61,0.3);
+    border: 1px solid rgba(90,138,106,0.4);
+    color: var(--accent2);
+    border-radius: 0.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .exp-bullets li {
+    font-size: 0.9rem; color: rgba(247,244,239,0.6);
+    line-height: 1.6;
+    padding-left: 1.1rem;
+    position: relative;
+  }
+  .exp-bullets li::before {
+    content: '→';
+    position: absolute; left: 0;
+    color: var(--accent2); font-size: 0.8rem;
+  }
+
+  /* PROJECT */
+  #project { border-top: 1px solid var(--border2); }
+
+  .project-card {
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    display: grid; grid-template-columns: 1.2fr 1fr;
+    transition: border-color 0.2s;
+  }
+  .project-card:hover { border-color: var(--accent); }
+
+  .project-content { padding: 3rem; }
+
+  .project-type {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--warm);
+    margin-bottom: 1rem;
+  }
+
+  .project-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem; line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .project-desc {
+    font-size: 0.9rem; color: var(--ink2);
+    line-height: 1.75; margin-bottom: 1.5rem;
+  }
+
+  .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+  .stack-tag {
+    font-size: 0.75rem; font-weight: 500;
+    padding: 0.25rem 0.65rem;
+    background: var(--warm-light);
+    color: var(--warm);
+    border-radius: 0.2rem;
+    font-family: 'DM Sans', monospace;
+  }
+
+  .project-visual {
+    background: var(--ink);
+    display: flex; flex-direction: column; justify-content: center;
+    align-items: center; padding: 3rem;
+    position: relative; overflow: hidden;
+  }
+  .project-visual-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(196,113,58,0.15) 0%, transparent 70%);
+  }
+
+  .project-icon {
+    position: relative; z-index: 1;
+    width: 72px; height: 72px;
+    border: 1px solid rgba(247,244,239,0.15);
+    border-radius: 1rem;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-icon svg { width: 32px; height: 32px; }
+
+  .project-features { position: relative; z-index: 1; list-style: none; width: 100%; }
+  .project-features li {
+    font-size: 0.8rem; color: rgba(247,244,239,0.5);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(247,244,239,0.06);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .project-features li::before {
+    content: '';
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--warm);
+    flex-shrink: 0;
+  }
+
+  /* EDUCATION & CERTS */
+  #education { background: var(--accent-light); border-top: 1px solid rgba(45,90,61,0.1); }
+
+  #education .section-label { color: var(--accent); }
+  #education .section-label::after { background: rgba(45,90,61,0.2); }
+
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+  .edu-card {
+    background: white;
+    border: 1px solid rgba(45,90,61,0.1);
+    border-radius: 0.5rem;
+    padding: 2rem;
+  }
+
+  .edu-icon {
+    width: 40px; height: 40px;
+    background: var(--accent-light);
+    border: 1px solid rgba(45,90,61,0.15);
+    border-radius: 0.5rem;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .edu-school {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem; color: var(--ink);
+    margin-bottom: 0.35rem; line-height: 1.2;
+  }
+
+  .edu-program {
+    font-size: 0.85rem; color: var(--accent); font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .edu-period {
+    font-size: 0.78rem; color: var(--ink3);
+    letter-spacing: 0.04em;
+  }
+
+  .cert-list { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.75rem; }
+  .cert-item {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    font-size: 0.85rem; color: var(--ink2); line-height: 1.5;
+  }
+  .cert-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); flex-shrink: 0; margin-top: 0.45rem;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink); padding: 4rem 3rem 3rem;
+    text-align: center;
+  }
+
+  .footer-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem; color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-sub {
+    font-size: 0.85rem; color: rgba(247,244,239,0.4);
+    margin-bottom: 2rem; letter-spacing: 0.04em;
+  }
+
+  .footer-links {
+    display: flex; justify-content: center; gap: 2rem;
+    list-style: none; margin-bottom: 2.5rem;
+  }
+  .footer-links a {
+    font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase;
+    color: rgba(247,244,239,0.4); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--accent2); }
+
+  .footer-copy {
+    font-size: 0.75rem; color: rgba(247,244,239,0.2);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1; transform: none;
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { gap: 1rem; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 5rem 1.5rem 3rem; }
+    .hero-right { min-height: 340px; padding: 2.5rem 1.5rem; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .exp-item { grid-template-columns: 1fr; gap: 1rem; }
+    .project-card { grid-template-columns: 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">KJR Nuqui</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#project">Project</a></li>
+    <li><a href="#education">Education</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-left">
+    <div class="hero-tag">
+      <span style="width:6px;height:6px;background:currentColor;border-radius:50%;display:inline-block;"></span>
+      Open to opportunities
+    </div>
+    <h1 class="hero-name">Kyle Justine<br><em>Roie</em> Nuqui</h1>
+    <p class="hero-degree">BS Information Systems · Pampanga State University</p>
+    <p class="hero-bio">Detail-oriented IS student with hands-on experience in software development, database management, IT support, and systems analysis. Ready for entry-level IT and technology roles.</p>
+    <div class="hero-ctas">
+      <a href="mailto:justineroienuqui@gmail.com" class="btn-primary">Get in touch →</a>
+      <a href="#project" class="btn-outline">View my project</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-right-bg"></div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Years studying IS</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Cisco certifications</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Full-stack capstone</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">IT</div>
+        <div class="stat-label">Internship completed</div>
+      </div>
+    </div>
+    <div class="hero-contact">
+      <a href="tel:+639612290924" class="contact-item">
+        <span class="contact-dot"></span>
+        +63 961 229 0924
+      </a>
+      <a href="mailto:justineroienuqui@gmail.com" class="contact-item">
+        <span class="contact-dot"></span>
+        justineroienuqui@gmail.com
+      </a>
+      <span class="contact-item">
+        <span class="contact-dot"></span>
+        San Fernando, Pampanga, Philippines
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About me</div>
+  <div class="about-grid reveal">
+    <div>
+      <h2 class="about-heading">Building things that <em>work</em> — and work well.</h2>
+    </div>
+    <div>
+      <p class="about-text">I'm a fourth-year Information Systems student at Pampanga State University with a strong foundation across the full technology stack — from hardware troubleshooting and network fundamentals to web and mobile application development and database programming.</p>
+      <p class="about-text">During my internship at LIGHT Microfinance Inc., I built a digital slip system for the company and provided on-site and remote technical support across hardware, software, and network environments. I enjoy bridging business needs with technical solutions.</p>
+      <div class="section-label" style="margin-top:2rem; margin-bottom:1rem;">Core skills</div>
+      <div class="skills-wrap">
+        <span class="skill-tag">Web Development</span>
+        <span class="skill-tag">Mobile Development</span>
+        <span class="skill-tag">Database Management</span>
+        <span class="skill-tag">IT Support</span>
+        <span class="skill-tag">Technical Troubleshooting</span>
+        <span class="skill-tag">Network Fundamentals</span>
+        <span class="skill-tag">Systems Analysis & Design</span>
+        <span class="skill-tag">Documentation</span>
+        <span class="skill-tag">PHP · Laravel</span>
+        <span class="skill-tag">HTML · CSS · JS</span>
+        <span class="skill-tag">Project Management</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Experience</div>
+  <h2 class="exp-heading reveal">Where I've worked</h2>
+  <div class="exp-list">
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <p class="exp-period">Feb 2026 — May 2026</p>
+        <p class="exp-company">LIGHT Microfinance Inc.</p>
+        <p class="exp-role">Main Office, Pampanga</p>
+      </div>
+      <div class="exp-details">
+        <span class="exp-badge">IT Support Intern</span>
+        <ul class="exp-bullets">
+          <li>Provided on-site and remote technical support for hardware, software, printers, scanners, CCTVs, and network concerns.</li>
+          <li>Developed a digital slip system for internal company use — a full workflow improvement project.</li>
+          <li>Conducted hardware assessments and maintained equipment inventories.</li>
+          <li>Prepared technical reports and assisted in file archiving and AV equipment setup for organizational events.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <p class="exp-period">Jul 2021 — Aug 2022</p>
+        <p class="exp-company">CW Home Depot</p>
+        <p class="exp-role">San Fernando, Pampanga</p>
+      </div>
+      <div class="exp-details">
+        <span class="exp-badge" style="background:rgba(196,113,58,0.15);border-color:rgba(196,113,58,0.3);color:#C4713A;">Outright Merchandiser</span>
+        <ul class="exp-bullets">
+          <li>Managed merchandise display and product organization in a fast-paced retail environment.</li>
+          <li>Developed strong communication and adaptability skills through customer-facing work.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <p class="exp-period">May 2019 — Mar 2020</p>
+        <p class="exp-company">University of Baguio</p>
+        <p class="exp-role">Baguio City</p>
+      </div>
+      <div class="exp-details">
+        <span class="exp-badge" style="background:rgba(196,113,58,0.15);border-color:rgba(196,113,58,0.3);color:#C4713A;">Student Marshal</span>
+        <ul class="exp-bullets">
+          <li>Supported event coordination and crowd management for university activities.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECT -->
+<section id="project">
+  <div class="section-label">Capstone project</div>
+  <div class="project-card reveal">
+    <div class="project-content">
+      <p class="project-type">Full-Stack Web Application</p>
+      <h3 class="project-title">Greedy-Based Dorm Finder: Optimized Room Allocation System</h3>
+      <p class="project-desc">A web-based boarding house management system that improves booking efficiency and property management through algorithmic room allocation using Best-First Search. Features map-based routing and a user feedback system for a complete end-to-end tenant and landlord experience.</p>
+      <div class="project-stack">
+        <span class="stack-tag">PHP</span>
+        <span class="stack-tag">Laravel</span>
+        <span class="stack-tag">HTML</span>
+        <span class="stack-tag">CSS</span>
+        <span class="stack-tag">JavaScript</span>
+        <span class="stack-tag">Best-First Search</span>
+      </div>
+    </div>
+    <div class="project-visual">
+      <div class="project-visual-bg"></div>
+      <div class="project-icon">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 3L3 10v9c0 5.5 5.5 9.5 13 10 7.5-.5 13-4.5 13-10V10L16 3z" stroke="#5A8A6A" stroke-width="1.5" stroke-linejoin="round"/>
+          <circle cx="16" cy="15" r="4" stroke="#C4713A" stroke-width="1.5"/>
+          <path d="M16 11V8M16 22v-3M11 15H8M24 15h-3" stroke="#5A8A6A" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <ul class="project-features">
+        <li>Algorithmic room allocation engine</li>
+        <li>Interactive map-based routing</li>
+        <li>Tenant &amp; landlord dashboards</li>
+        <li>User feedback &amp; rating system</li>
+        <li>Real-time booking management</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">Education &amp; certifications</div>
+  <div class="edu-grid">
+
+    <div class="edu-card reveal">
+      <div class="edu-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 2L2 6l8 4 8-4-8-4zM2 10l8 4 8-4M2 14l8 4 8-4" stroke="#2D5A3D" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <p class="edu-school">Pampanga State University</p>
+      <p class="edu-program">BS Information Systems</p>
+      <p class="edu-period">August 2022 — Present</p>
+      <div style="margin-top:1rem; padding-top:1rem; border-top:1px solid rgba(45,90,61,0.08);">
+        <p style="font-size:0.75rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:0.6rem;">Coursework</p>
+        <p style="font-size:0.82rem;color:var(--ink2);line-height:1.65;">Web &amp; Mobile App Development · Database Management Systems · Computer Networking · Systems Analysis &amp; Design · Project Management · Business Process Management</p>
+      </div>
+    </div>
+
+    <div class="edu-card reveal">
+      <div class="edu-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <rect x="2" y="4" width="16" height="12" rx="2" stroke="#2D5A3D" stroke-width="1.5"/>
+          <path d="M6 8h8M6 11h5" stroke="#2D5A3D" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <p class="edu-school">Cisco Networking Academy</p>
+      <p class="edu-program">Certifications</p>
+      <p class="edu-period">Completed</p>
+      <div class="cert-list">
+        <div class="cert-item">
+          <span class="cert-dot"></span>
+          Computer Hardware Basics
+        </div>
+        <div class="cert-item">
+          <span class="cert-dot"></span>
+          Hardware and Upgrade Support
+        </div>
+        <div class="cert-item">
+          <span class="cert-dot"></span>
+          Introduction to Data Science
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-name">Kyle Justine Roie Nuqui</p>
+  <p class="footer-sub">BS Information Systems · Available for IT &amp; tech roles · Philippines</p>
+  <ul class="footer-links">
+    <li><a href="mailto:justineroienuqui@gmail.com">Email</a></li>
+    <li><a href="tel:+639612290924">Phone</a></li>
+    <li><a href="#hero">Back to top</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 Kyle Justine Roie C. Nuqui</p>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
